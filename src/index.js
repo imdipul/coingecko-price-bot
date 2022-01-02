@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const port = 3000;
- 
+
 app.get('/', (req, res) => res.send('Hello World!'));
- 
+
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
 
 const { Client } = require('discord.js')
@@ -27,15 +27,17 @@ client.setInterval(async () => {
 
   const { price, symbol, circSupply } = data
 
+  console.log(data);
+
   client.guilds.cache.forEach(async (guild) => {
     const botMember = guild.me
     await botMember.setNickname(`${symbol}: $${numberWithCommas(price)}`)
   })
 
-  client.user.setActivity(
-    `MC: $${numberWithCommas(Math.round(price * circSupply))}`,
-    { type: 'WATCHING' },
-  )
-}, 1 * 60 * 1000)
+  // client.user.setActivity(
+  //   `PShare Price: $${numberWithCommas(Math.round(price * circSupply))}`,
+  //   { type: 'WATCHING' },
+  // )
+}, 0.1 * 60 * 1000)
 
 client.login(process.env.DISCORD_API_TOKEN)

@@ -11,6 +11,8 @@ exports.fetchData = async () => {
     const symbol = tokenData.symbol.toUpperCase()
     const circSupply = tokenData.market_data.circulating_supply
 
+    console.log(tokenData);
+
     return { price, symbol, circSupply }
   } catch (err) {
     console.log(err)
